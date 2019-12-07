@@ -1,0 +1,3 @@
+# blog_post_api
+
+Simple REST API using node.js, express.js, mongodb and including user authentications &amp; authorizations with jwt , etc...

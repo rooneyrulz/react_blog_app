@@ -1,0 +1,39 @@
+{
+  "name": "blog_post_api",
+  "version": "1.0.0",
+  "description": "simple nodejs rest api",
+  "main": "server.js",
+  "scripts": {
+    "start": "node -r esm server.js",
+    "server": "nodemon -r esm server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rooneyrulz/blog_post_api.git"
+  },
+  "keywords": [
+    "ruzny"
+  ],
+  "author": "ruzny",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rooneyrulz/blog_post_api/issues"
+  },
+  "homepage": "https://github.com/rooneyrulz/blog_post_api#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "bluebird": "^3.7.2",
+    "concurrently": "^5.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "esm": "^3.2.25",
+    "express": "^4.17.1",
+    "express-validator": "^6.3.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.7.13",
+    "morgan": "^1.9.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.1"
+  }
+}
