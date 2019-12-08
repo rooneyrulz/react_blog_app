@@ -4,8 +4,10 @@
   "description": "simple nodejs rest api",
   "main": "server.js",
   "scripts": {
+    "client": "npm start --prefix client",
     "start": "node -r esm server.js",
-    "server": "nodemon -r esm server.js"
+    "server": "nodemon -r esm server.js",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "repository": {
     "type": "git",

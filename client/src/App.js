@@ -1,5 +1,10 @@
-import React, { Fragment } from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import React, { Fragment, useEffect } from 'react';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect
+} from 'react-router-dom';
 import './App.css';
 
 // COMPONENTS
@@ -10,27 +15,37 @@ import About from './pages/About';
 import Register from './pages/auth/Register';
 import Login from './pages/auth/Login';
 
+// REDUX
+import { Provider } from 'react-redux';
+import store from './store';
+import { loadUser } from './actions/auth';
+
 const App = () => {
+  useEffect(() => {
+    store.dispatch(loadUser());
+  }, []);
   return (
-    <Router>
-      <Fragment>
-        <header>
-          <AppHeader />
-        </header>
-        <div className="App container">
-          <Switch>
-            <Redirect exact from='/' to='/home' />
-            <Route exact path='/home' component={Home} />
-            <Route exact path='/dashboard' component={Dashboard} />
-            <Route exact path='/about' component={About} />
-            <Route exact path='/register' component={Register} />
-            <Route exact path='/login' component={Login} />
-          </Switch>
-        </div>
-        <footer></footer>
-      </Fragment>
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <Fragment>
+          <header>
+            <AppHeader />
+          </header>
+          <div className='App container'>
+            <Switch>
+              <Redirect exact from='/' to='/home' />
+              <Route exact path='/home' component={Home} />
+              <Route exact path='/dashboard' component={Dashboard} />
+              <Route exact path='/about' component={About} />
+              <Route exact path='/register' component={Register} />
+              <Route exact path='/login' component={Login} />
+            </Switch>
+          </div>
+          <footer></footer>
+        </Fragment>
+      </Router>
+    </Provider>
   );
-}
+};
 
 export default App;
