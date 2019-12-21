@@ -14,6 +14,7 @@ import Dashboard from './pages/Dashboard';
 import About from './pages/About';
 import Register from './pages/auth/Register';
 import Login from './pages/auth/Login';
+import PrivateRoute from './components/routing/PrivateRoute';
 
 // REDUX
 import { Provider } from 'react-redux';
@@ -35,7 +36,7 @@ const App = () => {
             <Switch>
               <Redirect exact from='/' to='/home' />
               <Route exact path='/home' component={Home} />
-              <Route exact path='/dashboard' component={Dashboard} />
+              <PrivateRoute exact path='/dashboard' component={Dashboard} />
               <Route exact path='/about' component={About} />
               <Route exact path='/register' component={Register} />
               <Route exact path='/login' component={Login} />

@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 // REDUX
 import { connect } from 'react-redux';
 import { loginUser } from '../../actions/auth';
 
-const Login = ({ loginUser }) => {
+// COMPONENTS
+import Spinner from '../../layouts/Spinner';
+
+const Login = ({ loginUser, isAuthenticated, loading, history }) => {
   const [formData, setFormData] = useState({
     username: '',
     password: ''
@@ -19,7 +23,11 @@ const Login = ({ loginUser }) => {
   const onChange = e =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  return (
+  if (isAuthenticated) history.push('/dashboard');
+
+  return loading && isAuthenticated ? (
+    <Spinner />
+  ) : (
     <div className='Login'>
       <header className='text-center'>
         <h3>Log In</h3>
@@ -68,4 +76,14 @@ const Login = ({ loginUser }) => {
   );
 };
 
-export default connect(null, { loginUser })(Login);
+Login.propTypes = {
+  isAuthenticated: PropTypes.bool,
+  loading: PropTypes.bool
+};
+
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated,
+  loading: state.auth.loading
+});
+
+export default connect(mapStateToProps, { loginUser })(Login);

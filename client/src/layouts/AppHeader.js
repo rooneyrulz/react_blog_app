@@ -1,11 +1,12 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 const AppHeader = () => {
   return (
-    <nav className='navbar navbar-expand-md navbar-dark bg-dark mb-5'>
+    <nav className='navbar navbar-expand-md navbar-light mb-5'>
       <div className='container'>
         <a className='navbar-brand' href='#'>
-          Blog App
+          Blog
         </a>
         <button
           className='navbar-toggler d-lg-none'
@@ -19,14 +20,26 @@ const AppHeader = () => {
         <div className='collapse navbar-collapse' id='collapsibleNavId'>
           <ul className='navbar-nav mr-auto mt-2 mt-lg-0'>
             <li className='nav-item active'>
-              <a className='nav-link' href='/home'>
+              <NavLink exact className='nav-link' to='/home'>
                 Home
-              </a>
+              </NavLink>
             </li>
             <li className='nav-item'>
-              <a className='nav-link' href='/about'>
+              <NavLink exact className='nav-link' to='/about'>
                 About
-              </a>
+              </NavLink>
+            </li>
+          </ul>
+          <ul className='navbar-nav ml-auto mt-2 mt-lg-0'>
+            <li className='nav-item active'>
+              <NavLink exact className='nav-link' to='/register'>
+                Register
+              </NavLink>
+            </li>
+            <li className='nav-item'>
+              <NavLink exact className='nav-link' to='/login'>
+                Login
+              </NavLink>
             </li>
           </ul>
         </div>
