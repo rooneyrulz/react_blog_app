@@ -9,6 +9,7 @@ import {
   LOGOUT
 } from './types';
 import setAuthHeader from '../utils/setAuthHeader';
+import setAlert from '../actions/alert';
 
 const uri = 'http://localhost:5000';
 
@@ -29,6 +30,7 @@ export const loadUser = () => async dispatch => {
     dispatch({ type: USER_LOADED, payload: data });
   } catch (error) {
     console.log(error.message);
+    dispatch({ type: AUTH_ERROR });
   }
 };
 
@@ -42,12 +44,16 @@ export const loginUser = payload => async dispatch => {
 
   try {
     const { data } = await axios.post(`${uri}/api/users/auth`, payload, config);
-    console.log(data);
 
     dispatch({ type: REGISTER_SUCCESS, payload: data });
+
     dispatch(loadUser());
+    dispatch(setAlert('You are just logged in!', 200, 'success'));
   } catch (error) {
     console.log(error.message);
     dispatch({ type: REGISTER_FAIL });
+
+    // DISPATCH Alert
+    dispatch(setAlert(error.response.data, error.response.status, 'danger'));
   }
 };

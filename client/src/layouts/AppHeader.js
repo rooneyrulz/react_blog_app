@@ -1,13 +1,13 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
 const AppHeader = () => {
   return (
     <nav className='navbar navbar-expand-md navbar-light mb-5'>
       <div className='container'>
-        <a className='navbar-brand' href='#'>
+        <Link className='navbar-brand' to='/'>
           Blog
-        </a>
+        </Link>
         <button
           className='navbar-toggler d-lg-none'
           type='button'

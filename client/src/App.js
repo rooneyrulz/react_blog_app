@@ -17,6 +17,7 @@ import Login from './pages/auth/Login';
 import Blog from './pages/Blog';
 import NewBlog from './pages/NewBlog';
 import NotFound from './pages/NotFound';
+import Alert from './layouts/Alert';
 
 import PrivateRoute from './components/routing/PrivateRoute';
 
@@ -37,6 +38,9 @@ const App = () => {
             <AppHeader />
           </header>
           <div className='App container'>
+            <Fragment>
+              <Alert />
+            </Fragment>
             <Switch>
               <Redirect exact from='/' to='/home' />
               <Route exact path='/home' component={Home} />
