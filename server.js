@@ -24,9 +24,19 @@ app.use(
 );
 app.use(express.json());
 
-// app.use((req, res, next) => {
-//   res.header()
-// });
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept, Authorization, x-auth-token'
+  );
+
+  if (req.method === 'OPTIONS') {
+    req.header('Access-Control-Allow-Methods', 'GET, PUT, PATCH, POST, DELETE');
+    return res.status(200).json({});
+  }
+  next();
+});
 
 app.use('/api', require('./routes'));
 app.use('/api/posts', require('./routes/post'));
