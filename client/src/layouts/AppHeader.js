@@ -19,9 +19,14 @@ const AppHeader = () => {
         ></button>
         <div className='collapse navbar-collapse' id='collapsibleNavId'>
           <ul className='navbar-nav mr-auto mt-2 mt-lg-0'>
-            <li className='nav-item active'>
+            <li className='nav-item'>
               <NavLink exact className='nav-link' to='/home'>
                 Home
+              </NavLink>
+            </li>
+            <li className='nav-item'>
+              <NavLink exact className='nav-link' to='/blogs'>
+                Blogs
               </NavLink>
             </li>
             <li className='nav-item'>
@@ -31,7 +36,7 @@ const AppHeader = () => {
             </li>
           </ul>
           <ul className='navbar-nav ml-auto mt-2 mt-lg-0'>
-            <li className='nav-item active'>
+            <li className='nav-item'>
               <NavLink exact className='nav-link' to='/register'>
                 Register
               </NavLink>
