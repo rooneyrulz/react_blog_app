@@ -5,22 +5,19 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 // COMPONENTS
-import Spinner from '../layouts/Spinner';
 
-const Dashboard = ({ isAuthenticated, loading, history }) => {
+const Dashboard = ({ isAuthenticated, history }) => {
   if (!isAuthenticated) history.push('/login');
 
-  return loading ? <Spinner /> : <div>Dashboard</div>;
+  return <div>Dashboard</div>;
 };
 
 Dashboard.propTypes = {
-  isAuthenticated: PropTypes.bool,
-  loading: PropTypes.bool
+  isAuthenticated: PropTypes.bool
 };
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated,
-  loading: state.auth.loading
+  isAuthenticated: state.auth.isAuthenticated
 });
 
 export default connect(mapStateToProps)(Dashboard);
