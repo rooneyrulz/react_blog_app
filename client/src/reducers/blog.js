@@ -1,6 +1,6 @@
 import {
-  BLOG,
-  BLOGS,
+  GET_BLOG,
+  GET_BLOGS,
   NEW_BLOG,
   UPDATE_BLOG,
   DELETE_BLOG
@@ -16,14 +16,42 @@ const blogReducer = (state = initialState, action) => {
   const { type, payload } = action;
 
   switch (type) {
-    case BLOGS:
-      break;
+    case GET_BLOGS:
+      return {
+        ...state,
+        loading: false,
+        blogs: payload
+      };
 
-    case BLOG:
-      break;
+    case GET_BLOG:
+      return {
+        ...state,
+        loading: false,
+        blog: payload
+      };
 
     case NEW_BLOG:
-      break;
+      return {
+        ...state,
+        loading: false,
+        blogs: [...state.blogs, payload]
+      };
+
+    case UPDATE_BLOG:
+      return {
+        ...state,
+        loading: false,
+        blogs: state.blogs.map(blog =>
+          blog._id === payload.id ? payload.data : blog
+        )
+      };
+
+    case DELETE_BLOG:
+      return {
+        ...state,
+        loading: false,
+        blogs: state.blogs.filter(blog => blog._id !== payload)
+      };
 
     default:
       return state;
