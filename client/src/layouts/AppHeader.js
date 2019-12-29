@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import { connect } from 'react-redux';
 import { NavLink, Link } from 'react-router-dom';
 
-const AppHeader = () => {
+// COMPONENTS
+import LogOut from '../components/auth/LogOut';
+
+const AppHeader = ({ isAuthenticated }) => {
   return (
     <nav className='navbar navbar-expand-md navbar-light mb-5'>
       <div className='container'>
@@ -19,11 +23,19 @@ const AppHeader = () => {
         ></button>
         <div className='collapse navbar-collapse' id='collapsibleNavId'>
           <ul className='navbar-nav mr-auto mt-2 mt-lg-0'>
-            <li className='nav-item'>
-              <NavLink exact className='nav-link' to='/home'>
-                Home
-              </NavLink>
-            </li>
+            {isAuthenticated ? (
+              <li className='nav-item'>
+                <NavLink exact className='nav-link' to='/dashboard'>
+                  Dashboard
+                </NavLink>
+              </li>
+            ) : (
+              <li className='nav-item'>
+                <NavLink exact className='nav-link' to='/home'>
+                  Home
+                </NavLink>
+              </li>
+            )}
             <li className='nav-item'>
               <NavLink exact className='nav-link' to='/blogs'>
                 Blogs
@@ -36,16 +48,24 @@ const AppHeader = () => {
             </li>
           </ul>
           <ul className='navbar-nav ml-auto mt-2 mt-lg-0'>
-            <li className='nav-item'>
-              <NavLink exact className='nav-link' to='/register'>
-                Register
-              </NavLink>
-            </li>
-            <li className='nav-item'>
-              <NavLink exact className='nav-link' to='/login'>
-                Login
-              </NavLink>
-            </li>
+            {isAuthenticated ? (
+              <li className='nav-item'>
+                <LogOut />
+              </li>
+            ) : (
+              <Fragment>
+                <li className='nav-item'>
+                  <NavLink exact className='nav-link' to='/register'>
+                    Register
+                  </NavLink>
+                </li>
+                <li className='nav-item'>
+                  <NavLink exact className='nav-link' to='/login'>
+                    Login
+                  </NavLink>
+                </li>
+              </Fragment>
+            )}
           </ul>
         </div>
       </div>
@@ -53,4 +73,8 @@ const AppHeader = () => {
   );
 };
 
-export default AppHeader;
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps)(AppHeader);

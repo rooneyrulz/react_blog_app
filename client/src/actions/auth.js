@@ -45,15 +45,18 @@ export const loginUser = payload => async dispatch => {
   try {
     const { data } = await axios.post(`${uri}/api/users/auth`, payload, config);
 
-    dispatch({ type: REGISTER_SUCCESS, payload: data });
+    dispatch({ type: LOGIN_SUCCESS, payload: data });
 
     dispatch(loadUser());
     dispatch(setAlert('You are just logged in!', 200, 'success'));
   } catch (error) {
     console.log(error.message);
-    dispatch({ type: REGISTER_FAIL });
+    dispatch({ type: LOGIN_FAIL });
 
     // DISPATCH Alert
     dispatch(setAlert(error.response.data, error.response.status, 'danger'));
   }
 };
+
+// LOGOUT USER
+export const logOutUser = e => dispatch => dispatch({ type: LOGOUT });
