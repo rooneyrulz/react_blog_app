@@ -18,3 +18,7 @@ body {
   justify-content: space-between;
   align-items: center;
 }
+
+.blog-item-body:hover {
+  background: #eaeaea;
+}
