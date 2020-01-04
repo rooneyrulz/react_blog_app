@@ -3,13 +3,15 @@ import {
   GET_BLOGS,
   NEW_BLOG,
   UPDATE_BLOG,
-  DELETE_BLOG
+  DELETE_BLOG,
+  BLOG_ERROR
 } from '../actions/types';
 
 const initialState = {
   loading: true,
   blogs: [],
-  blog: null
+  blog: null,
+  error: null
 };
 
 const blogReducer = (state = initialState, action) => {
@@ -51,6 +53,13 @@ const blogReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         blogs: state.blogs.filter(blog => blog._id !== payload)
+      };
+
+    case BLOG_ERROR:
+      return {
+        ...state,
+        loading: false,
+        error: payload
       };
 
     default:

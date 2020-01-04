@@ -1,3 +1,3 @@
-# blog_post_api
+# REACT_BLOG_POST
 
-Simple REST API using node.js, express.js, mongodb and including user authentications &amp; authorizations with jwt , etc...
+Simple full stack application with react.js, redux, bootstrap, node.js, express.js, mongodb, jwt and more popular technologies

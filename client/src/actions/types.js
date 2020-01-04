@@ -12,3 +12,4 @@ export const GET_BLOGS = 'GET_BLOGS';
 export const NEW_BLOG = 'NEW_BLOG';
 export const UPDATE_BLOG = 'UPDATE_BLOG';
 export const DELETE_BLOG = 'DELETE_BLOG';
+export const BLOG_ERROR = 'BLOG_ERROR';
