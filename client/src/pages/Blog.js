@@ -23,7 +23,7 @@ const Blog = ({ blog: { loading, blogs }, getBlogs }) => {
     );
 
   return (
-    <div className='Blog'>
+    <div className='Blog d__center'>
       <header className='d__flex'>
         <h3>Blogs</h3>
         <Link to='/new-blog' className='btn btn-outline-info'>

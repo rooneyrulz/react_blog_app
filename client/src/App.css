@@ -19,6 +19,11 @@ body {
   align-items: center;
 }
 
+.d__center {
+  width: 60%;
+  margin: auto;
+}
+
 .blog-item-body:hover {
   background: #eaeaea;
 }

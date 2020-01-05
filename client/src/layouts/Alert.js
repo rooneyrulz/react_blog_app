@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -9,7 +9,7 @@ const Alert = ({ alerts }) => {
   const appendAlerts = alerts.map(alert => (
     <AlertItem key={alert.id} alert={alert} />
   ));
-  return <Fragment>{appendAlerts}</Fragment>;
+  return <div className='d__center'>{appendAlerts}</div>;
 };
 
 Alert.propTypes = {

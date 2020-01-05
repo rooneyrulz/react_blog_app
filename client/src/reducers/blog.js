@@ -22,14 +22,16 @@ const blogReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        blogs: payload
+        blogs: payload,
+        blog: null
       };
 
     case GET_BLOG:
       return {
         ...state,
         loading: false,
-        blog: payload
+        blog: payload,
+        blogs: []
       };
 
     case NEW_BLOG:
