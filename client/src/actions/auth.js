@@ -58,5 +58,33 @@ export const loginUser = payload => async dispatch => {
   }
 };
 
+// REGISTER USER
+export const registerUser = payload => async dispatch => {
+  const config = {
+    header: {
+      'Content-Type': 'application/json'
+    }
+  };
+
+  try {
+    const { data } = await axios.post(
+      `${uri}/api/users/register`,
+      payload,
+      config
+    );
+
+    dispatch({ type: REGISTER_SUCCESS, payload: data });
+
+    dispatch(loadUser());
+    dispatch(setAlert('You are just logged in!', 200, 'success'));
+  } catch (error) {
+    console.log(error.message);
+    dispatch({ type: REGISTER_FAIL });
+
+    // DISPATCH Alert
+    dispatch(setAlert(error.response.data, error.response.status, 'danger'));
+  }
+};
+
 // LOGOUT USER
 export const logOutUser = e => dispatch => dispatch({ type: LOGOUT });
