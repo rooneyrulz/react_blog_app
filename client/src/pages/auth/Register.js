@@ -1,7 +1,19 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-const Register = () => {
+// REDUX
+import { connect } from 'react-redux';
+import { registerUser } from '../../actions/auth';
+
+// COMPONENTS
+import Spinner from '../../layouts/Spinner';
+
+const Register = ({
+  auth: { isAuthenticated, loading },
+  registerUser,
+  history
+}) => {
   const [formData, setFormData] = useState({
     username: '',
     email: '',
@@ -11,13 +23,17 @@ const Register = () => {
 
   const onSubmit = e => {
     e.preventDefault();
-    console.log(formData);
+    registerUser(formData);
   };
 
   const onChange = e =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  return (
+  if (isAuthenticated) history.push('/dashboard');
+
+  return loading && isAuthenticated ? (
+    <Spinner />
+  ) : (
     <div className='Register d__center'>
       <header className='text-center'>
         <h3>Register</h3>
@@ -80,4 +96,13 @@ const Register = () => {
   );
 };
 
-export default Register;
+Register.propTypes = {
+  auth: PropTypes.object.isRequired,
+  registerUser: PropTypes.func.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(mapStateToProps, { registerUser })(Register);
