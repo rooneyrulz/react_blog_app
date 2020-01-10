@@ -50,6 +50,9 @@ export const addBlog = (formData, history) => async dispatch => {
     // DISPATCH NEW_BLOG
     dispatch({ type: NEW_BLOG, payload: data });
     history.push('/blogs');
+
+    // DISPATCH SET_ALERT
+    dispatch(setAlert('Awesome! You just posted here!', 201, 'success'));
   } catch (error) {
     console.log(error);
     // DISPATCH BLOG ERROR

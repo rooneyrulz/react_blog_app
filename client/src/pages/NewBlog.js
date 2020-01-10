@@ -3,8 +3,9 @@ import React, { useState } from 'react';
 // REDUX
 import { connect } from 'react-redux';
 import { addBlog } from '../actions/blog';
+import setAlert from '../actions/alert';
 
-const NewBlog = () => {
+const NewBlog = ({ setAlert, addBlog, history }) => {
   const [formData, setFormData] = useState({ title: '', description: '' });
 
   const { title, description } = formData;
@@ -14,6 +15,7 @@ const NewBlog = () => {
 
   const onSubmit = e => {
     e.preventDefault();
+    addBlog(formData, history);
   };
 
   return (
@@ -31,6 +33,7 @@ const NewBlog = () => {
             name='title'
             placeholder='Enter title'
             className='form-control form-control-lg'
+            onChange={e => onChange(e)}
           />
         </div>
         <div className='form-group'>
@@ -39,6 +42,7 @@ const NewBlog = () => {
             name='description'
             placeholder='Enter description'
             className='form-control form-control-lg'
+            onChange={e => onChange(e)}
           ></textarea>
         </div>
         <button type='submit' className='btn btn-success btn-lg'>
@@ -49,4 +53,8 @@ const NewBlog = () => {
   );
 };
 
-export default NewBlog;
+// const mapStateToProps = state => ({
+
+// });
+
+export default connect(null, { addBlog, setAlert })(NewBlog);
