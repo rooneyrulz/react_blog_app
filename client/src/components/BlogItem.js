@@ -22,7 +22,7 @@ const BlogItem = ({ blog }) => {
           <p className='lead mb-0'>{blog.title}</p>
         </Link>
         <div className='card-action'>
-          <Link to='/blog/edit' className='btn btn-info btn-sm'>
+          <Link to={`/blog/${blog._id}`} className='btn btn-info btn-sm'>
             Edit
           </Link>
           <button

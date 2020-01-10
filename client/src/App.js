@@ -7,6 +7,11 @@ import {
 } from 'react-router-dom';
 import './App.css';
 
+// REDUX
+import { Provider } from 'react-redux';
+import store from './store';
+import { loadUser } from './actions/auth';
+
 // COMPONENTS
 import AppHeader from './layouts/AppHeader';
 import Home from './pages/Home';
@@ -16,15 +21,11 @@ import Register from './pages/auth/Register';
 import Login from './pages/auth/Login';
 import Blog from './pages/Blog';
 import NewBlog from './pages/NewBlog';
+import BlogDetail from './pages/BlogDetail';
 import NotFound from './pages/NotFound';
 import Alert from './layouts/Alert';
 
 import PrivateRoute from './components/routing/PrivateRoute';
-
-// REDUX
-import { Provider } from 'react-redux';
-import store from './store';
-import { loadUser } from './actions/auth';
 
 const App = () => {
   useEffect(() => {
@@ -50,6 +51,7 @@ const App = () => {
               <Route exact path='/login' component={Login} />
               <PrivateRoute exact path='/dashboard' component={Dashboard} />
               <PrivateRoute exact path='/new-blog' component={NewBlog} />
+              <PrivateRoute exact path='/blog/:id' component={BlogDetail} />
               <Route exact component={NotFound} />
             </Switch>
           </div>

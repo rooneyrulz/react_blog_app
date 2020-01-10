@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 
 // REDUX
 import { connect } from 'react-redux';
-import { addBlog } from '../actions/blog';
+import {} from '../actions/blog';
 import setAlert from '../actions/alert';
 
-const NewBlog = ({ setAlert, addBlog, history }) => {
+const BlogDetail = ({ setAlert, history }) => {
   const [formData, setFormData] = useState({ title: '', description: '' });
 
   const onChange = e =>
@@ -13,13 +13,12 @@ const NewBlog = ({ setAlert, addBlog, history }) => {
 
   const onSubmit = e => {
     e.preventDefault();
-    addBlog(formData, history);
   };
 
   return (
     <div className='New-Blog d__center'>
       <header className='d__flex'>
-        <h3>Create New Blogs!</h3>
+        <h3>Update Blogs!</h3>
         <div></div>
       </header>
       <hr />
@@ -44,7 +43,7 @@ const NewBlog = ({ setAlert, addBlog, history }) => {
           ></textarea>
         </div>
         <button type='submit' className='btn btn-success btn-lg'>
-          CREATE
+          UPDATE
         </button>
       </form>
     </div>
@@ -55,4 +54,4 @@ const NewBlog = ({ setAlert, addBlog, history }) => {
 
 // });
 
-export default connect(null, { addBlog, setAlert })(NewBlog);
+export default connect(null, {})(BlogDetail);
