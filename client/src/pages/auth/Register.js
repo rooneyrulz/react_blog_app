@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 // REDUX
 import { connect } from 'react-redux';
 import { registerUser } from '../../actions/auth';
+import setAlert from '../../actions/alert';
 
 // COMPONENTS
 import Spinner from '../../layouts/Spinner';
@@ -12,6 +13,7 @@ import Spinner from '../../layouts/Spinner';
 const Register = ({
   auth: { isAuthenticated, loading },
   registerUser,
+  setAlert,
   history
 }) => {
   const [formData, setFormData] = useState({
@@ -21,9 +23,15 @@ const Register = ({
     password2: ''
   });
 
+  const { username, email, password1, password2 } = formData;
+
   const onSubmit = e => {
     e.preventDefault();
-    registerUser(formData);
+    if (password1 !== password2)
+      setAlert('Passwords dont match!', 400, 'danger');
+
+    const body = { username, email, password: password1 };
+    registerUser(body);
   };
 
   const onChange = e =>
@@ -105,4 +113,4 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps, { registerUser })(Register);
+export default connect(mapStateToProps, { registerUser, setAlert })(Register);

@@ -1,6 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
+
+// REDUX
+import { connect } from 'react-redux';
+import { addBlog } from '../actions/blog';
 
 const NewBlog = () => {
+  const [formData, setFormData] = useState({ title: '', description: '' });
+
+  const { title, description } = formData;
+
+  const onChange = e =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+
+  const onSubmit = e => {
+    e.preventDefault();
+  };
+
   return (
     <div className='New-Blog d__center'>
       <header className='d__flex'>
@@ -9,7 +24,7 @@ const NewBlog = () => {
       </header>
       <hr />
       <br />
-      <form>
+      <form onSubmit={e => onSubmit(e)}>
         <div className='form-group'>
           <input
             type='text'

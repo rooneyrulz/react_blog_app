@@ -67,18 +67,14 @@ export const registerUser = payload => async dispatch => {
   };
 
   try {
-    const { data } = await axios.post(
-      `${uri}/api/users/register`,
-      payload,
-      config
-    );
+    const { data } = await axios.post(`${uri}/api/users`, payload, config);
 
     dispatch({ type: REGISTER_SUCCESS, payload: data });
 
     dispatch(loadUser());
     dispatch(setAlert('You are just logged in!', 200, 'success'));
   } catch (error) {
-    console.log(error.message);
+    console.log(error.response.data);
     dispatch({ type: REGISTER_FAIL });
 
     // DISPATCH Alert

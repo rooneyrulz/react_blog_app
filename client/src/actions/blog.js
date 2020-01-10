@@ -34,3 +34,28 @@ export const getBlogs = () => async dispatch => {
     // dispatch(setAlert(error.response.data, error.response.status, 'danger'));
   }
 };
+
+// ADD NEW BLOGS
+export const addBlog = (formData, history) => async dispatch => {
+  try {
+    const config = {
+      header: {
+        'Content-Type': 'application/json'
+      }
+    };
+
+    const { data } = await axios.post(`${uri}/api/posts`, formData, config);
+    console.log(data);
+
+    // DISPATCH NEW_BLOG
+    dispatch({ type: NEW_BLOG, payload: data });
+    history.push('/blogs');
+  } catch (error) {
+    console.log(error);
+    // DISPATCH BLOG ERROR
+    dispatch({ type: BLOG_ERROR, payload: { msg: error.response.data } });
+
+    // DISPATCH SET_ALERT
+    dispatch(setAlert(error.response.data, error.response.status, 'danger'));
+  }
+};
