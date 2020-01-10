@@ -3,6 +3,7 @@ const { createServer } = require('http');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const logger = require('morgan');
+const cors = require('cors');
 
 const dbConnection = require('./config/db');
 
@@ -10,6 +11,9 @@ dotenv.config({ path: './.env' });
 
 const app = express();
 const server = createServer(app);
+
+// ACCEPT CORS
+app.use(cors());
 
 // CONNECTING TO MONGODB
 mongoose.Promise = global.Promise;

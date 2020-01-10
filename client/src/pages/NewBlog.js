@@ -3,9 +3,8 @@ import React, { useState } from 'react';
 // REDUX
 import { connect } from 'react-redux';
 import { addBlog } from '../actions/blog';
-import setAlert from '../actions/alert';
 
-const NewBlog = ({ setAlert, addBlog, history }) => {
+const NewBlog = ({ addBlog, history }) => {
   const [formData, setFormData] = useState({ title: '', description: '' });
 
   const onChange = e =>
@@ -51,8 +50,4 @@ const NewBlog = ({ setAlert, addBlog, history }) => {
   );
 };
 
-// const mapStateToProps = state => ({
-
-// });
-
-export default connect(null, { addBlog, setAlert })(NewBlog);
+export default connect(null, { addBlog })(NewBlog);

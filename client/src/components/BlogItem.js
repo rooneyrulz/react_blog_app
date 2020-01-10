@@ -1,8 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-const BlogItem = ({ blog }) => {
-  const onDelete = id => console.log(id);
+// REDUX
+import { connect } from 'react-redux';
+import { deleteBlog } from '../actions/blog';
+
+const BlogItem = ({ blog, deleteBlog }) => {
+  const onDelete = id => deleteBlog(id);
 
   return (
     <div className='card mb-2'>
@@ -16,7 +21,7 @@ const BlogItem = ({ blog }) => {
         className='card-body blog-item-body'
       >
         <Link
-          to={`/blog/${blog._id}`}
+          to={`/blog/edit`}
           style={{ textDecoration: 'none', color: '#111' }}
         >
           <p className='lead mb-0'>{blog.title}</p>
@@ -37,4 +42,8 @@ const BlogItem = ({ blog }) => {
   );
 };
 
-export default BlogItem;
+BlogItem.propTypes = {
+  deleteBlog: PropTypes.func.isRequired
+};
+
+export default connect(null, { deleteBlog })(BlogItem);

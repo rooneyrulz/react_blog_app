@@ -25,11 +25,9 @@ export const loadUser = () => async dispatch => {
 
   try {
     const { data } = await axios.get(`${uri}/api/users/auth/user`, config);
-    console.log(data);
 
     dispatch({ type: USER_LOADED, payload: data });
   } catch (error) {
-    console.log(error.message);
     dispatch({ type: AUTH_ERROR });
   }
 };
@@ -44,13 +42,11 @@ export const loginUser = payload => async dispatch => {
 
   try {
     const { data } = await axios.post(`${uri}/api/users/auth`, payload, config);
-
     dispatch({ type: LOGIN_SUCCESS, payload: data });
 
     dispatch(loadUser());
     dispatch(setAlert('You are just logged in!', 200, 'success'));
   } catch (error) {
-    console.log(error.message);
     dispatch({ type: LOGIN_FAIL });
 
     // DISPATCH Alert
@@ -68,13 +64,11 @@ export const registerUser = payload => async dispatch => {
 
   try {
     const { data } = await axios.post(`${uri}/api/users`, payload, config);
-
     dispatch({ type: REGISTER_SUCCESS, payload: data });
 
     dispatch(loadUser());
     dispatch(setAlert('You are just logged in!', 200, 'success'));
   } catch (error) {
-    console.log(error.response.data);
     dispatch({ type: REGISTER_FAIL });
 
     // DISPATCH Alert

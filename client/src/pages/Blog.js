@@ -26,7 +26,7 @@ const Blog = ({ blog: { loading, blogs }, getBlogs }) => {
     <div className='Blog d__center'>
       <header className='d__flex'>
         <h3>Blogs</h3>
-        <Link to='/new-blog' className='btn btn-outline-info'>
+        <Link to='/new-blog' className='btn btn-outline-success'>
           New Blog!
         </Link>
       </header>
