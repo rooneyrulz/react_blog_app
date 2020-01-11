@@ -59,6 +59,27 @@ export const addBlog = (formData, history) => async dispatch => {
   }
 };
 
+// GET BLOG BY ID
+export const getBlog = id => async dispatch => {
+  try {
+    const config = {
+      header: {
+        'Content-Type': 'application/json'
+      }
+    };
+
+    const { data } = await axios.get(`${uri}/api/posts/${id}`, config);
+    // DISPATCH GET_BLOG
+    dispatch({ type: GET_BLOG, payload: data });
+  } catch (error) {
+    // DISPATCH BLOG ERROR
+    dispatch({ type: BLOG_ERROR, payload: { msg: error.response.data } });
+
+    // DISPATCH SET_ALERT
+    // dispatch(setAlert(error.response.data, error.response.status, 'danger'));
+  }
+};
+
 // DELETE BLOG
 export const deleteBlog = id => async dispatch => {
   try {

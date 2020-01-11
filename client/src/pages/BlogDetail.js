@@ -1,19 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 // REDUX
 import { connect } from 'react-redux';
-import {} from '../actions/blog';
-import setAlert from '../actions/alert';
+import { getBlog } from '../actions/blog';
 
-const BlogDetail = ({ setAlert, history }) => {
+const BlogDetail = ({ blog: { blog, loading }, getBlog, history, match }) => {
   const [formData, setFormData] = useState({ title: '', description: '' });
+
+  useEffect(() => {
+    getBlog(match.params.id);
+
+    setFormData({
+      ...formData,
+      title: loading || !blog.title ? '' : blog.title,
+      description: loading || !blog.description ? '' : blog.description
+    });
+  }, [getBlog, loading, match.params.id]);
 
   const onChange = e =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const onSubmit = e => {
     e.preventDefault();
+    console.log(formData);
   };
+
+  const { title, description } = formData;
 
   return (
     <div className='New-Blog d__center'>
@@ -28,6 +41,7 @@ const BlogDetail = ({ setAlert, history }) => {
           <input
             type='text'
             name='title'
+            value={title}
             placeholder='Enter title'
             className='form-control form-control-lg'
             onChange={e => onChange(e)}
@@ -37,6 +51,7 @@ const BlogDetail = ({ setAlert, history }) => {
           <textarea
             type='text'
             name='description'
+            value={description}
             placeholder='Enter description'
             className='form-control form-control-lg'
             onChange={e => onChange(e)}
@@ -50,8 +65,13 @@ const BlogDetail = ({ setAlert, history }) => {
   );
 };
 
-// const mapStateToProps = state => ({
+BlogDetail.propTypes = {
+  blog: PropTypes.object.isRequired,
+  getBlog: PropTypes.func.isRequired
+};
 
-// });
+const mapStateToProps = state => ({
+  blog: state.blog
+});
 
-export default connect(null, {})(BlogDetail);
+export default connect(mapStateToProps, { getBlog })(BlogDetail);
