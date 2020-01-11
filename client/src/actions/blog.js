@@ -80,6 +80,36 @@ export const getBlog = id => async dispatch => {
   }
 };
 
+// UPDATE EXISTING BLOG
+export const updateBlog = (formData, id, history) => async dispatch => {
+  try {
+    const config = {
+      header: {
+        'Content-Type': 'application/json'
+      }
+    };
+
+    const { data } = await axios.put(
+      `${uri}/api/posts/${id}`,
+      formData,
+      config
+    );
+
+    // DISPATCH UPDATE_BLOG
+    dispatch({ type: UPDATE_BLOG, payload: { data, id } });
+    history.push('/blogs');
+
+    // DISPATCH SET_ALERT
+    dispatch(setAlert('Awesome! You just updated your blog!', 200, 'success'));
+  } catch (error) {
+    // DISPATCH BLOG ERROR
+    dispatch({ type: BLOG_ERROR, payload: { msg: error.response.data } });
+
+    // DISPATCH SET_ALERT
+    dispatch(setAlert(error.response.data, error.response.status, 'danger'));
+  }
+};
+
 // DELETE BLOG
 export const deleteBlog = id => async dispatch => {
   try {

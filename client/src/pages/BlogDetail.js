@@ -3,9 +3,15 @@ import PropTypes from 'prop-types';
 
 // REDUX
 import { connect } from 'react-redux';
-import { getBlog } from '../actions/blog';
+import { getBlog, updateBlog } from '../actions/blog';
 
-const BlogDetail = ({ blog: { blog, loading }, getBlog, history, match }) => {
+const BlogDetail = ({
+  blog: { blog, loading },
+  getBlog,
+  updateBlog,
+  history,
+  match
+}) => {
   const [formData, setFormData] = useState({ title: '', description: '' });
 
   useEffect(() => {
@@ -13,8 +19,8 @@ const BlogDetail = ({ blog: { blog, loading }, getBlog, history, match }) => {
 
     setFormData({
       ...formData,
-      title: loading || !blog.title ? '' : blog.title,
-      description: loading || !blog.description ? '' : blog.description
+      title: loading || !blog ? '' : blog.title,
+      description: loading || !blog ? '' : blog.description
     });
   }, [getBlog, loading, match.params.id]);
 
@@ -23,7 +29,7 @@ const BlogDetail = ({ blog: { blog, loading }, getBlog, history, match }) => {
 
   const onSubmit = e => {
     e.preventDefault();
-    console.log(formData);
+    updateBlog(formData, match.params.id, history);
   };
 
   const { title, description } = formData;
@@ -67,11 +73,12 @@ const BlogDetail = ({ blog: { blog, loading }, getBlog, history, match }) => {
 
 BlogDetail.propTypes = {
   blog: PropTypes.object.isRequired,
-  getBlog: PropTypes.func.isRequired
+  getBlog: PropTypes.func.isRequired,
+  updateBlog: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
   blog: state.blog
 });
 
-export default connect(mapStateToProps, { getBlog })(BlogDetail);
+export default connect(mapStateToProps, { getBlog, updateBlog })(BlogDetail);
