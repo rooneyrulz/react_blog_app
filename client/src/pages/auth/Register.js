@@ -51,6 +51,7 @@ const Register = ({
         <div className='form-group'>
           <label htmlFor='username'>Username</label>
           <input
+            type='text'
             id='username'
             className='form-control form-control-lg'
             name='username'
@@ -61,6 +62,7 @@ const Register = ({
         <div className='form-group'>
           <label htmlFor='email'>Email</label>
           <input
+            type='email'
             id='email'
             className='form-control form-control-lg'
             name='email'
@@ -71,6 +73,7 @@ const Register = ({
         <div className='form-group'>
           <label htmlFor='password1'>Password</label>
           <input
+            type='password'
             id='password1'
             className='form-control form-control-lg'
             name='password1'
@@ -81,6 +84,7 @@ const Register = ({
         <div className='form-group'>
           <label htmlFor='password2'>Confirm Password</label>
           <input
+            type='password'
             id='password2'
             className='form-control form-control-lg'
             name='password2'

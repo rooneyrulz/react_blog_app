@@ -9,7 +9,13 @@ import { connect } from 'react-redux';
 const Dashboard = ({ isAuthenticated, history }) => {
   if (!isAuthenticated) history.push('/login');
 
-  return <div>Dashboard</div>;
+  return (
+    <div className='Dashboard'>
+      <div className='jumbotron'>
+        <h1>Dashboard</h1>
+      </div>
+    </div>
+  );
 };
 
 Dashboard.propTypes = {
