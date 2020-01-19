@@ -24,6 +24,7 @@ import NewBlog from './pages/NewBlog';
 import BlogDetail from './pages/BlogDetail';
 import NotFound from './pages/NotFound';
 import Alert from './layouts/Alert';
+import AppFooter from './layouts/AppFooter';
 
 import PrivateRoute from './components/routing/PrivateRoute';
 
@@ -55,7 +56,9 @@ const App = () => {
               <Route exact component={NotFound} />
             </Switch>
           </div>
-          <footer></footer>
+          <footer className='mt-5'>
+            <AppFooter />
+          </footer>
         </Fragment>
       </Router>
     </Provider>

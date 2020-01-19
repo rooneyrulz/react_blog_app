@@ -19,8 +19,8 @@ const BlogDetail = ({
 
     setFormData({
       ...formData,
-      title: loading || !blog ? '' : blog.title,
-      description: loading || !blog ? '' : blog.description
+      title: !loading && blog ? blog.title : '',
+      description: !loading && blog ? blog.title : ''
     });
   }, [getBlog, loading, match.params.id]);
 
