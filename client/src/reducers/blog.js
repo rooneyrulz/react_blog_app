@@ -44,7 +44,7 @@ const blogReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         blogs: state.blogs.map(blog =>
-          blog._id === payload.id ? payload.data : blog
+          blog._id === payload.id ? { ...payload.data } : blog
         )
       };
 
