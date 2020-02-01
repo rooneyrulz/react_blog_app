@@ -16,7 +16,6 @@ const BlogDetail = ({
 
   useEffect(() => {
     getBlog(match.params.id);
-
     setFormData({
       ...formData,
       title: loading || !blog ? '' : blog.title,
