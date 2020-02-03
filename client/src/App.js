@@ -32,6 +32,8 @@ const App = () => {
               <RoutingComponents />
             </Switch>
           </div>
+          <hr />
+          <br />
           <footer className='mt-5'>
             <AppFooter />
           </footer>

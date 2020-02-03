@@ -11,8 +11,8 @@ const Dashboard = ({ isAuthenticated, history }) => {
 
   return (
     <div className='Dashboard'>
-      <div className='jumbotron'>
-        <h1>Dashboard</h1>
+      <div className='jumbotron' style={{ background: '#fff' }}>
+        <h1 className='display-4'>Dashboard</h1>
       </div>
     </div>
   );
