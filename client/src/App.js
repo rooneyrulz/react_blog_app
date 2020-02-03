@@ -1,10 +1,5 @@
 import React, { Fragment, useEffect } from 'react';
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  Redirect
-} from 'react-router-dom';
+import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import './App.css';
 
 // REDUX
@@ -14,19 +9,9 @@ import { loadUser } from './actions/auth';
 
 // COMPONENTS
 import AppHeader from './layouts/AppHeader';
-import Home from './pages/Home';
-import Dashboard from './pages/Dashboard';
-import About from './pages/About';
-import Register from './pages/auth/Register';
-import Login from './pages/auth/Login';
-import Blog from './pages/Blog';
-import NewBlog from './pages/NewBlog';
-import BlogDetail from './pages/BlogDetail';
-import NotFound from './pages/NotFound';
+import RoutingComponents from './components/routing/Routes';
 import Alert from './layouts/Alert';
 import AppFooter from './layouts/AppFooter';
-
-import PrivateRoute from './components/routing/PrivateRoute';
 
 const App = () => {
   useEffect(() => {
@@ -44,16 +29,7 @@ const App = () => {
               <Alert />
             </Fragment>
             <Switch>
-              <Redirect exact from='/' to='/home' />
-              <Route exact path='/home' component={Home} />
-              <Route exact path='/about' component={About} />
-              <Route exact path='/blogs' component={Blog} />
-              <Route exact path='/register' component={Register} />
-              <Route exact path='/login' component={Login} />
-              <PrivateRoute exact path='/dashboard' component={Dashboard} />
-              <PrivateRoute exact path='/new-blog' component={NewBlog} />
-              <PrivateRoute exact path='/blog/:id' component={BlogDetail} />
-              <Route exact component={NotFound} />
+              <RoutingComponents />
             </Switch>
           </div>
           <footer className='mt-5'>

@@ -6,7 +6,7 @@ const setAlert = (
   status,
   alertType,
   alertId = null,
-  timeout = 4000
+  timeout = 2000
 ) => dispatch => {
   const id = v4();
 
