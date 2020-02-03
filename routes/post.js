@@ -27,6 +27,21 @@ router.get('/', async (req, res, next) => {
   }
 });
 
+// @ROUTE           >  GET  /api/posts/me
+// @DESC            >  GET ALL BLOGS BY THE AUTH USER
+// @ACCESS CONTROL  >  PRIVATE
+router.get('/me', isAuth, async (req, res, next) => {
+  const { id } = req.user;
+
+  try {
+    const user = await User.findById(id).exec();
+    return res.status(200).json(user.posts);
+  } catch (error) {
+    console.log(error.message);
+    return res.status(500).send('Something went wrong!');
+  }
+});
+
 // @ROUTE           >  GET  /api/posts/:id
 // @DESC            >  GET SINGLE POST
 // @ACCESS CONTROL  >  PUBLIC
