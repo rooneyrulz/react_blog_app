@@ -10,6 +10,7 @@ import Login from '../../pages/auth/Login';
 import Blog from '../../pages/Blog';
 import NewBlog from '../../pages/NewBlog';
 import BlogDetail from '../../pages/BlogDetail';
+import MyBlog from '../../pages/MyBlog';
 import NotFound from '../../pages/NotFound';
 
 // PRIVATE ROUTE COMPONENT
@@ -27,6 +28,7 @@ const Routes = () => {
         <Route exact path='/login' component={Login} />
         <PrivateRoute exact path='/dashboard' component={Dashboard} />
         <PrivateRoute exact path='/new-blog' component={NewBlog} />
+        <PrivateRoute exact path='/myblogs' component={MyBlog} />
         <PrivateRoute exact path='/blog/:id' component={BlogDetail} />
         <Route exact component={NotFound} />
       </Switch>
