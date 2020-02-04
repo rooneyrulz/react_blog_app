@@ -35,7 +35,12 @@ router.get('/me', isAuth, async (req, res, next) => {
 
   try {
     const user = await User.findById(id).exec();
-    return res.status(200).json(user.posts);
+    if (!user) return res.status(401).send('User does not exist!');
+
+    const posts = await Post.find({ owner: id }).exec();
+    if (!posts.length) return res.status(409).send('Posts not found!');
+
+    return res.status(200).json(posts);
   } catch (error) {
     console.log(error.message);
     return res.status(500).send('Something went wrong!');
