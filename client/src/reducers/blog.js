@@ -61,7 +61,8 @@ const blogReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        blogs: state.blogs.filter(blog => blog._id !== payload)
+        blogs: state.blogs.filter(blog => blog._id !== payload),
+        myBlogs: state.myBlogs.filter(blog => blog._id !== payload)
       };
 
     case BLOG_ERROR:

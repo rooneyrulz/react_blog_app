@@ -49,9 +49,16 @@ const AppHeader = ({ isAuthenticated }) => {
           </ul>
           <ul className='navbar-nav ml-auto mt-2 mt-lg-0'>
             {isAuthenticated ? (
-              <li className='nav-item'>
-                <LogOut />
-              </li>
+              <Fragment>
+                <li className='nav-item'>
+                  <NavLink exact className='nav-link' to='/myblogs'>
+                    MyBlogs
+                  </NavLink>
+                </li>
+                <li className='nav-item'>
+                  <LogOut />
+                </li>
+              </Fragment>
             ) : (
               <Fragment>
                 <li className='nav-item'>
