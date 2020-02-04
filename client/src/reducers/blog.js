@@ -4,12 +4,14 @@ import {
   NEW_BLOG,
   UPDATE_BLOG,
   DELETE_BLOG,
+  GET_MY_BLOGS,
   BLOG_ERROR
 } from '../actions/types';
 
 const initialState = {
   loading: true,
   blogs: [],
+  myBlogs: [],
   blog: null,
   error: null
 };
@@ -23,6 +25,13 @@ const blogReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         blogs: payload
+      };
+
+    case GET_MY_BLOGS:
+      return {
+        ...state,
+        loading: false,
+        myBlogs: payload
       };
 
     case GET_BLOG:

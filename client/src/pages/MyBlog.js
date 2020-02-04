@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 // REDUX
 import { connect } from 'react-redux';
+import { getMyBlogs } from '../actions/blog';
 
-const MyBlog = ({ isAuthenticated, history }) => {
+const MyBlog = ({
+  auth: { isAuthenticated, myBlogs, loading },
+  getMyBlogs,
+  history
+}) => {
+  useEffect(() => {
+    getMyBlogs();
+  }, []);
+
   if (!isAuthenticated) history.push('/login');
 
   return (
@@ -14,8 +23,13 @@ const MyBlog = ({ isAuthenticated, history }) => {
   );
 };
 
+MyBlog.propTypes = {
+  auth: PropTypes.object.isRequired,
+  getMyBlogs: PropTypes.func.isRequired
+};
+
 const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated
+  auth: state.auth
 });
 
-export default connect(mapStateToProps, {})(MyBlog);
+export default connect(mapStateToProps, { getMyBlogs })(MyBlog);

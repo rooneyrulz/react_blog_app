@@ -9,6 +9,7 @@ export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const LOGOUT = 'LOGOUT';
 export const GET_BLOG = 'GET_BLOG';
 export const GET_BLOGS = 'GET_BLOGS';
+export const GET_MY_BLOGS = 'GET_MY_BLOGS';
 export const NEW_BLOG = 'NEW_BLOG';
 export const UPDATE_BLOG = 'UPDATE_BLOG';
 export const DELETE_BLOG = 'DELETE_BLOG';
