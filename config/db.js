@@ -7,10 +7,11 @@ module.exports = async () => {
       {
         useNewUrlParser: true,
         useCreateIndex: true,
+        useUnifiedTopology: true,
         useFindAndModify: false
       }
     );
-    if (con) console.log('connecting to mongodb!');
+    if (con) console.log('connecting to mongodb!'.bold());
   } catch (error) {
     throw error.message;
   }

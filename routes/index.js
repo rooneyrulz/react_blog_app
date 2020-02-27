@@ -4,6 +4,6 @@ const router = Router({
   strict: 'true'
 });
 
-router.get('/', (req, res, next) => res.send('It works!'));
+router.get('/', require('../controllers'));
 
 module.exports = router;
